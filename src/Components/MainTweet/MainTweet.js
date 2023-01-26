@@ -13,7 +13,7 @@ const MainTweet = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const submitTweet = await axios.post(`${API}/tweets`,{
+      const submitTweet = await axios.post(`${API}/api/tweets`,{
         userId: currentUser._id,
         description: tweetText,
       });

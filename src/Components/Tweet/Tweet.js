@@ -23,7 +23,7 @@ const { id } = useParams();
 useEffect(() => {
    const fetchData = async () => {
     try {
-      const findUser = await axios.get(`${API}/users/find/${tweet.userId}`);
+      const findUser = await axios.get(`${API}/api/users/find/${tweet.userId}`);
       setUserData(findUser.data)
     } catch (err) {
         console.log("error", err);
@@ -36,17 +36,17 @@ const handleLike = async (e) => {
     e.preventDefault();
 
     try{
-        const like = await axios.put(`${API}/tweets/${tweet._id}/like`,{
+        const like = await axios.put(`${API}/api/tweets/${tweet._id}/like`,{
             id: currentUser._id,
         });
         if(location.includes("profile")){
-            const newData = await axios.get(`${API}/tweets/user/all/${id}`);
+            const newData = await axios.get(`${API}/api/tweets/user/all/${id}`);
             setData(newData.data);
         } else if (location.includes("explore")){
-            const newData = await axios.get(`${API}/tweets/explore`);
+            const newData = await axios.get(`${API}/api/tweets/explore`);
             setData(newData.data)
         } else {
-            const newData = await axios.get(`${API}/tweets/timeline/${currentUser._id}`);
+            const newData = await axios.get(`${API}/api/tweets/timeline/${currentUser._id}`);
             setData(newData.data)
         }
     } catch (err) {

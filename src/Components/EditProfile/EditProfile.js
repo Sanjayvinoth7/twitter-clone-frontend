@@ -43,7 +43,7 @@ const uploadImg = (file) => {
     
     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
       try{
-        const updateProfile = await axios.put(`${API}/users/${currentUser._id}`,{
+        const updateProfile = await axios.put(`${API}/api/users/${currentUser._id}`,{
           profilePicture: downloadURL,
         })
 
@@ -60,7 +60,7 @@ const uploadImg = (file) => {
 
 
 const handleDelete = async( ) => {
-  const deleteProfile =await axios.delete(`${API}/users/${currentUser._id}`);
+  const deleteProfile =await axios.delete(`${API}/api/users/${currentUser._id}`);
   dispatch(logout());
   navigate("/signin");
 };

@@ -18,7 +18,7 @@ import { API } from '../../config';
        e.preventDefault();
        dispatch(loginStart());
        try {
-       const res = await axios.post(`${API}/auth/signin`, { username, password });
+       const res = await axios.post(`${API}/api/auth/signin`, { username, password });
        dispatch(loginSuccess(res.data));
        navigate("/");
        console.log(res.data);
@@ -32,7 +32,7 @@ import { API } from '../../config';
         dispatch(loginStart());
 
         try {
-         const res = await axios.post(`${API}/auth/signup`, {username, email, password})
+         const res = await axios.post(`${API}/api/auth/signup`, {username, email, password})
           dispatch(loginSuccess(res.data));
           navigate("/");
         } catch (err) {
