@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useDispatch, useSelector } from 'react-redux';
 import { changeProfile , logout } from '../../Redux/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { API } from '../../config';
 
 const EditProfile = ({ setOpen }) => {
 
@@ -42,7 +43,7 @@ const uploadImg = (file) => {
     
     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
       try{
-        const updateProfile = await axios.put(`/users/${currentUser._id}`,{
+        const updateProfile = await axios.put(`${API}/users/${currentUser._id}`,{
           profilePicture: downloadURL,
         })
 
@@ -59,7 +60,7 @@ const uploadImg = (file) => {
 
 
 const handleDelete = async( ) => {
-  const deleteProfile =await axios.delete(`/users/${currentUser._id}`);
+  const deleteProfile =await axios.delete(`${API}/users/${currentUser._id}`);
   dispatch(logout());
   navigate("/signin");
 };
