@@ -2,6 +2,7 @@ import React, { useEffect, useState }from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import Tweet from '../Tweet/Tweet';
+import { API } from '../../config';
 
 const ExploreTweet = () => {
   const[explore, setExplore] = useState(null);
