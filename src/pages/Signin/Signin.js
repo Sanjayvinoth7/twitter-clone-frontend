@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import {loginStart, loginSuccess, loginFailed} from '../../Redux/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { API } from '../../config';
 
 
   const Signin = () => {
@@ -17,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
        e.preventDefault();
        dispatch(loginStart());
        try {
-       const res = await axios.post("/auth/signin", { username, password });
+       const res = await axios.post(`${API}/auth/signin`, { username, password });
        dispatch(loginSuccess(res.data));
        navigate("/");
        console.log(res.data);
@@ -31,7 +32,7 @@ import { useNavigate } from 'react-router-dom';
         dispatch(loginStart());
 
         try {
-         const res = await axios.post("/auth/signup", {username, email, password})
+         const res = await axios.post(`${API}/auth/signup`, {username, email, password})
           dispatch(loginSuccess(res.data));
           navigate("/");
         } catch (err) {

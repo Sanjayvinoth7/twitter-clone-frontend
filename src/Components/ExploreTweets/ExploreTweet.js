@@ -10,7 +10,7 @@ const ExploreTweet = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const exploreTweets = await axios.get("/tweets/explore");
+      const exploreTweets = await axios.get(`${API}/tweets/explore`);
       setExplore(exploreTweets.data);
     } catch (err) {
       console.log("error", err);

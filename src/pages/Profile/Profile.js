@@ -7,6 +7,7 @@ import RightSidebar from '../../Components/RightSidebar/RightSidebar';
 import Tweet from '../../Components/Tweet/Tweet';
 import EditProfile from '../../Components/EditProfile/EditProfile';
 import { following  } from '../../Redux/userSlice';
+import { API } from '../../config';
 
 
 
@@ -24,8 +25,8 @@ const dispatch = useDispatch();
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userTweets = await axios.get(`/tweets/user/all/${id}`);
-      const userProfile = await axios.get(`/users/find/${id}`);
+      const userTweets = await axios.get(`${API}/tweets/user/all/${id}`);
+      const userProfile = await axios.get(`${API}/users/find/${id}`);
       
       setUserTweets(userTweets.data);
       setUserProfile(userProfile.data);
@@ -39,7 +40,7 @@ useEffect(() => {
 const handleFollow = async () => {
   if(!currentUser.following.includes(id)){
     try {
-        const follow = await axios.put(`/users/follow/${id}`,{
+        const follow = await axios.put(`${API}/users/follow/${id}`,{
           id: currentUser._id,
         });
         dispatch(following(id));
@@ -48,7 +49,7 @@ const handleFollow = async () => {
     }
   } else {
     try{
-      const unfollow = await axios.put(`/users/unfollow/${id}`, {
+      const unfollow = await axios.put(`${API}/users/unfollow/${id}`, {
         id: currentUser._id,
       });
       dispatch(following(id));
