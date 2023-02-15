@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from 'react';
 import {getStorage , ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
-import app from '../../firebase'
+import app from '../../firebase';
 import axios from 'axios';
 import {useDispatch, useSelector } from 'react-redux';
 import { changeProfile , logout } from '../../Redux/userSlice';
@@ -43,7 +43,7 @@ const uploadImg = (file) => {
     
     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
       try{
-        const updateProfile = await axios.put(`${API}/api/users/${currentUser._id}`,{
+        const updateProfile = await axios.put(`https://twitter-backend-qmt0.onrender.com/api/users/${currentUser._id}`,{
           profilePicture: downloadURL,
         })
 
@@ -60,7 +60,7 @@ const uploadImg = (file) => {
 
 
 const handleDelete = async( ) => {
-  const deleteProfile =await axios.delete(`${API}/api/users/${currentUser._id}`);
+  const deleteProfile =await axios.delete(`https://twitter-backend-qmt0.onrender.com/api/users/${currentUser._id}`);
   dispatch(logout());
   navigate("/signin");
 };

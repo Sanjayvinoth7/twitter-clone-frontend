@@ -13,12 +13,12 @@ import { API } from '../../config';
 
      const dispatch = useDispatch();
      const navigate = useNavigate();
-     
+      
      const handleLogin = async(e) => {
        e.preventDefault();
        dispatch(loginStart());
        try {
-       const res = await axios.post(`${API}/api/auth/signin`, { username, password });
+       const res = await axios.post(`https://twitter-backend-qmt0.onrender.com/api/auth/signin`, { username, password });
        dispatch(loginSuccess(res.data));
        navigate("/");
        console.log(res.data);
@@ -32,7 +32,7 @@ import { API } from '../../config';
         dispatch(loginStart());
 
         try {
-         const res = await axios.post(`${API}/api/auth/signup`, {username, email, password})
+         const res = await axios.post(`https://twitter-backend-qmt0.onrender.com/api/auth/signup`, {username, email, password})
           dispatch(loginSuccess(res.data));
           navigate("/");
         } catch (err) {

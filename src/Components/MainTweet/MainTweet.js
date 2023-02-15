@@ -10,16 +10,17 @@ const MainTweet = () => {
 
   const {currentUser} = useSelector((state) => state.user);
 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      const submitTweet = await axios.post(`${API}/api/tweets`,{
+    try {
+      const submitTweet = await axios.post(`https://twitter-backend-qmt0.onrender.com/api/tweets`, {
         userId: currentUser._id,
         description: tweetText,
       });
       window.location.reload(false);
     } catch (err) {
-      console.log( err);
+      console.log(err);
     }
   };
 
@@ -32,7 +33,7 @@ const MainTweet = () => {
       )}
         <form className="border-b-2 pb-6">
           <textarea 
-          onChange={e => setTweetText(e.target.value)}
+          onChange={(e) => setTweetText(e.target.value)}
             type="text" 
             placeholder="what's happening?"
             maxLength={200}

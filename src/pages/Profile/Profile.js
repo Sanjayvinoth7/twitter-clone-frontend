@@ -25,8 +25,8 @@ const dispatch = useDispatch();
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const userTweets = await axios.get(`${API}/api/tweets/user/all/${id}`);
-      const userProfile = await axios.get(`${API}/api/users/find/${id}`);
+      const userTweets = await axios.get(`https://twitter-backend-qmt0.onrender.com/api/tweets/user/all/${id}`);
+      const userProfile = await axios.get(`https://twitter-backend-qmt0.onrender.com/api/users/find/${id}`);
       
       setUserTweets(userTweets.data);
       setUserProfile(userProfile.data);
@@ -40,7 +40,7 @@ useEffect(() => {
 const handleFollow = async () => {
   if(!currentUser.following.includes(id)){
     try {
-        const follow = await axios.put(`${API}/api/users/follow/${id}`,{
+        const follow = await axios.put(`https://twitter-backend-qmt0.onrender.com/api/users/follow/${id}`,{
           id: currentUser._id,
         });
         dispatch(following(id));
@@ -49,7 +49,7 @@ const handleFollow = async () => {
     }
   } else {
     try{
-      const unfollow = await axios.put(`${API}/api/users/unfollow/${id}`, {
+      const unfollow = await axios.put(`https://twitter-backend-qmt0.onrender.com/api/users/unfollow/${id}`, {
         id: currentUser._id,
       });
       dispatch(following(id));
